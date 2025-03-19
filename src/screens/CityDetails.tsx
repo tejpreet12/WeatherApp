@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const CityWeather = () => {
+const CityDetail = () => {
     return (
         <View>
-            <Text>CityWeather</Text>
+            <Text>CityDetail</Text>
         </View>
     )
 }
 
-export default CityWeather
+export default CityDetail
 
 const styles = StyleSheet.create({})
