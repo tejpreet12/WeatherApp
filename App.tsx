@@ -1,12 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import Navigation from './src/navigation';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <Navigation />
+    </SafeAreaView>
   );
 }
 
