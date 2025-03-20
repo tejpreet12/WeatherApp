@@ -10,7 +10,7 @@ export const useHomeController = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useEffect(() => {
-    if (vm.searchQuery.length > 1) {
+    if (vm.searchQuery.length >= 1) {
       const debounce = setTimeout(() => {
         vm.searchCities(vm.searchQuery);
       }, 500);
@@ -22,7 +22,9 @@ export const useHomeController = () => {
 
   const handleCityPress = (city: CityWeather) => {
     vm.fetchWeather(city);
-    navigation.navigate('CityDetails');
+  navigation.navigate('CityDetails', {
+    city: city,
+  });
   };
 
   return {

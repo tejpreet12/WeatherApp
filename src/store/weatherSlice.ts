@@ -34,7 +34,7 @@ const weatherSlice = createSlice({
       state.searchResults = [];
       state.currentCity =  null;
       state.loading= false;
-      state.error= null;
+      state.error= "";
       state.searchQuery= '';
     },
   },
