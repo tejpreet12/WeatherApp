@@ -1,40 +1,56 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { useNavigation } from '@react-navigation/native';
-import { ms, mvs } from '../utils/ScalingUtils';
+import React from 'react';
+import { View, TextInput, FlatList, StyleSheet, Text } from 'react-native';
+import { CityItem } from '../components/CityItem';
+import { useHomeController } from '../view-controller/useHomeController';
 
 const Home = () => {
-    const navigation = useNavigation();
+    const {
+        searchQuery,
+        setSearchCity,
+        searchResults,
+        lastSearched,
+        loading,
+        error,
+        handleCityPress,
+    } = useHomeController();
     return (
-        <View style={styles.container}>
-            <Text style={styles.textHeader}>Weather</Text>
-            <TextInput style={styles.textInput} />
-        </View>
-    )
-}
+        <View style={{ flex: 1, padding: 16 }}>
+            <TextInput
+                placeholder="Search city..."
+                value={searchQuery}
+                onChangeText={setSearchCity}
+                style={styles.input}
+            />
 
-export default Home
+            {error && <Text style={styles.error}>{error}</Text>}
+
+            <FlatList
+                data={searchQuery ? searchResults : lastSearched}
+                keyExtractor={(item) => item.name}
+                renderItem={({ item }) => (
+                    <CityItem
+                        city={item}
+                        onPress={() => handleCityPress(item)}
+                    />
+                )}
+            />
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: 'white',
-        padding: ms(10)
-    },
-    textHeader: {
-        fontSize: mvs(20),
-        fontWeight: 'bold',
-
-    },
-    textInput: {
+    input: {
+        height: 40,
+        borderColor: '#ccc',
         borderWidth: 1,
-        borderColor: 'black',
-        width: '90%',
-        height: mvs(40),
-        alignSelf: 'center',
-        marginVertical: mvs(10),
-        paddingHorizontal: mvs(10),
-        borderRadius: mvs(5),
+        borderRadius: 8,
+        paddingHorizontal: 12,
+        marginBottom: 16,
+    },
+    error: {
+        color: 'red',
+        marginBottom: 8,
+    },
+});
 
-    }
-})
+export default Home;

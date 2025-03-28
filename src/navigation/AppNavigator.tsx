@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import { CityWeather, Home } from '../screens';
+import { CityDetails, Home } from '../screens';
 
 
 const AppNavigator = () => {
@@ -8,7 +8,7 @@ const AppNavigator = () => {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="CityWeather" component={CityWeather} />
+            <Stack.Screen name="CityDetails" component={CityDetails} />
         </Stack.Navigator>
     );
 };

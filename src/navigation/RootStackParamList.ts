@@ -1,4 +1,8 @@
+import { CityWeather } from "../types/stateTypes";
+
 export type RootStackParamList = {
     Home: undefined;
-    CityWeather:undefined;
+    CityDetails: { 
+        city: CityWeather; 
+    };
 }
